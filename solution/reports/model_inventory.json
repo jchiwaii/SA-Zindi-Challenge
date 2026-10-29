@@ -1,0 +1,164 @@
+{
+  "models": {
+    "solution/runs/development/evidence.joblib": {
+      "bytes": 3220406,
+      "sha256": "75b56ac6facf2a12f67220f1656b1cf7c4e26bb567d2b011f754bb77c0f25a52"
+    },
+    "solution/runs/development/lightgbm.joblib": {
+      "bytes": 9376963,
+      "sha256": "47b6f08f1adb3e0ab7a35ccac610f335b7961c35dd1eb3ae7622617959cca125"
+    },
+    "solution/runs/development/energy_baseline.joblib": {
+      "bytes": 320835,
+      "sha256": "b78d5d7470254ac3616a52c9f7f69a7d83e65968bb4c5efc0d826dac70a57a57"
+    },
+    "solution/runs/development/templates.npy": {
+      "bytes": 4928,
+      "sha256": "0f5838cd41273b668acff7d392eeb41a48e7b216a6fb7f3642b9f2a7714f3866"
+    },
+    "solution/runs/development/catboost.cbm": {
+      "bytes": 4367808,
+      "sha256": "638b544853aeecc0f1f7daad64467537f154b10dc95d6ff2988df7d3ce49c0ae"
+    },
+    "solution/runs/development/conservative.joblib": {
+      "bytes": 6797009,
+      "sha256": "f50fb5bfece6f20507b905e56c9ffeefaa433f23b642d4d978400707e4a7d350"
+    },
+    "solution/runs/neural_development/model.pt": {
+      "bytes": 2067915,
+      "sha256": "11c64bdd2118a0f160c767ee529f9a7585f8bf56bcf0f95930b46c6e5ce3f24e"
+    },
+    "solution/runs/neural_development/normalizer.npz": {
+      "bytes": 4940,
+      "sha256": "7e8980a7f8b4015be9e49d7cf4ead9006f9b0b360532d05439b049c2357f4ee0"
+    },
+    "solution/runs/neural_development/templates.npy": {
+      "bytes": 4928,
+      "sha256": "0f5838cd41273b668acff7d392eeb41a48e7b216a6fb7f3642b9f2a7714f3866"
+    },
+    "solution/runs/final/evidence.joblib": {
+      "bytes": 3274102,
+      "sha256": "a4fd8f753ae6d7e3dc060ba5dff39a33faefa02698c67c6925970b7e9016fb85"
+    },
+    "solution/runs/final/lightgbm.joblib": {
+      "bytes": 9396738,
+      "sha256": "34d6766085edd539956d8885f37a6d75fd5a8834fcf10f237ed81434d01fa4b7"
+    },
+    "solution/runs/final/energy_baseline.joblib": {
+      "bytes": 323803,
+      "sha256": "4b5929dcc8c40bbd514be42386df756ed4008488f77d4a2d9f20ed5fcd0e09bc"
+    },
+    "solution/runs/final/templates.npy": {
+      "bytes": 4928,
+      "sha256": "e2377d7099d059adb8463673bcd0103e2781659325940885263401cf9e1f6017"
+    },
+    "solution/runs/final/catboost.cbm": {
+      "bytes": 4305296,
+      "sha256": "7754e372513f2267b1c8f6af52045a8a5f64ff5cf98e6d34c56ce61b721d1a49"
+    },
+    "solution/runs/final/conservative.joblib": {
+      "bytes": 6816670,
+      "sha256": "1968755822c0b0fa6eff7f782da946070572687d9b12944b07dca0dbe7e6556a"
+    },
+    "solution/runs/neural_final/model.pt": {
+      "bytes": 2067915,
+      "sha256": "1b0b8eb030a27da83492005ee674500319d9bd97041687014ac70d11581653be"
+    },
+    "solution/runs/neural_final/normalizer.npz": {
+      "bytes": 4940,
+      "sha256": "7291ddeb0836d4da627411f35a6de2808c13d8592c95bdc933f34c2a6a91e4ce"
+    },
+    "solution/runs/neural_final/templates.npy": {
+      "bytes": 4928,
+      "sha256": "e2377d7099d059adb8463673bcd0103e2781659325940885263401cf9e1f6017"
+    }
+  },
+  "model_bytes_total": 52365052,
+  "code_sha256": {
+    "solution/acoustic_model.py": "0b11b7c8dfe5d8f1539ab6a57cb228021f1dcf582b1d2876f4545ee5a39ee776",
+    "solution/audit_data.py": "4194b40bd2c08153e47dc7da7debce252ed32c8859b2686203cce4cf44d84e05",
+    "solution/download_external.py": "24fe64d9ff16d0e9d360b30162707a8891780d046b81a3b9c229508d6e9b3fa0",
+    "solution/inspect_sources.py": "fe1bacd1f4a37052c9d90253ee2a8a31870777349a960ac60fa3adcbfc6afdee",
+    "solution/make_report.py": "b6351fe6980f71eaf610bf7b3caa5db63a6ae29a891dd21fb7961160fd4cd8bf",
+    "solution/make_standalone.py": "2b6b877394b66b835126b888b33c5755d4980b2c52a80a7b7bc0fd0dd8293322",
+    "solution/neural.py": "7b9438257c6ed4dfe90189ab6602c8a316c82ecc1776c30d9500977a17053705",
+    "solution/package_solution.py": "6d2a0c0dbb1ee45cb63bda54b659bcac15a9f364c6c896bd5d99ebdaa9b09adf",
+    "solution/predict.py": "13687ceab638ed9ce03b27c07d86e49627ad1e084d5f6707e5969103bcf76c65",
+    "solution/prepare_backgrounds.py": "70a4fc6ba7db35b6f8230660fdbbf4b7eb5a97d5930537ea737fdba37899bb93",
+    "solution/prepare_external.py": "043ac5c82656d8d1b901d0d95ba44797e51f1143d0b383474e417d93b2035ec0",
+    "solution/run_development.py": "1c1f3bab92043ed2959f38963f4a2fee9762495cc2bab4adcf14e7292972ae61",
+    "solution/run_final.py": "98ace89ae3a06087d6f54a4b4f106b2e413499c5eb15ed397201ecc1dc98a86a",
+    "solution/select_and_audit.py": "8f7f0f84eaf6e5f1fd6f5cce21f92b3eaf78c65e6471836994ec6cc333ae9e40",
+    "solution/simulation.py": "9a5cfb2ba5b131c266276129ac7a5bc0c3f28a2e118b296a9fc7f1bcf4e4c916",
+    "solution/submission_inference.py": "2756714049fd055c4a2ab9c5c69c2304e5382f746e8c77e1761b321530b27ce1",
+    "solution/test_inference.py": "be1a3d5f493f4151902e478b0f1c18b63780c78fd904983984c343522c1479dc",
+    "solution/test_physics.py": "f6124ec77b073cb4ffc8d9dd3081e320d5f1338fca341f8807fd01ae66bb8336",
+    "solution/train.py": "4b413d1d5622de4ae137f95d401336a2f6cde861cba7e2e2444729646292d33a",
+    "solution/verify_reproduction.py": "1fbc99fc6615e91876155c35d0ec76d6c73986a731c6adf9e80a513e6311fd81"
+  },
+  "training_runs": {
+    "development": {
+      "wall_seconds": 498.13341307640076,
+      "peak_rss_mb": 1073.15625,
+      "cpu_count": 11,
+      "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+      "lightgbm_iterations": 1986,
+      "catboost_iterations": 1986,
+      "n_train": 100000,
+      "reference_clips": 145,
+      "target_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.0179299246519804,
+        0.24355926737189293,
+        0.4939584106206898,
+        0.8477165293693542,
+        0.9999851584434509
+      ]
+    },
+    "neural_development": {
+      "wall_seconds": 820.194109916687,
+      "peak_rss_mb": 1150.109375,
+      "epochs": 39,
+      "chosen_epoch": 27,
+      "device": "mps",
+      "parameters": 515219,
+      "n_train": 80000
+    },
+    "final": {
+      "wall_seconds": 629.7057738304138,
+      "peak_rss_mb": 1723.640625,
+      "cpu_count": 11,
+      "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+      "lightgbm_iterations": 1986,
+      "conservative_iterations": 1228,
+      "evidence_iterations": 900,
+      "catboost_iterations": 1986,
+      "n_train": 160000,
+      "reference_clips": 201,
+      "target_mean": 0.147943913936615,
+      "conservative_target_mean": 0.044658515602350235,
+      "addition_rate": 0.7488375,
+      "target_quantiles": [
+        0.0,
+        0.0,
+        0.0,
+        0.017605232074856758,
+        0.24126816913485527,
+        0.4906172305345536,
+        0.844701326489449,
+        0.999992847442627
+      ]
+    },
+    "neural_final": {
+      "wall_seconds": 693.9940888881683,
+      "peak_rss_mb": 1295.921875,
+      "epochs": 27,
+      "chosen_epoch": 27,
+      "device": "mps",
+      "parameters": 515219,
+      "n_train": 100000
+    }
+  }
+}

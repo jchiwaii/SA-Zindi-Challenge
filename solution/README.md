@@ -11,6 +11,8 @@ This is a local, open-source modelling pipeline for the Zindi underwater vessel-
 - `runs/final/` and `runs/neural_final/`: final trained models and training records.
 - `reports/frozen_selection.json`: validation-selected blend frozen before any competition test acoustic values are read.
 - `../submission_inference_report.json`: input/model/output hashes, inference time and memory.
+- `../vessel_noise_submission_bundle.zip`: runnable code, trained weights, predictions and provenance; original challenge inputs are excluded.
+- `reports/reproduction_check.json`: confirms both CSVs were reproduced byte for byte through the modular inference entry point.
 
 The two CSVs express different assumptions about unknown addition strength. The primary is selected by the predeclared validation objective; the alternative is documented sensitivity analysis. No test-distribution fitting or leaderboard probing is used.
 
@@ -20,13 +22,13 @@ Place `Test.csv` and `sample_submission.csv` in the parent directory of `solutio
 
 ```bash
 python3 -m pip install -r solution/requirements.txt
-OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=5 python3 solution/predict.py
+OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=5 python3 solution/submission_inference.py
 ```
 
-Inference runs on CPU without internet access. No training data or external WAV files are needed for this command. To choose explicit input and output locations:
+The single-file entry point requires no custom package installation. Inference runs on CPU without internet access. No training data or external WAV files are needed for this command. To choose explicit input and output locations:
 
 ```bash
-python3 solution/predict.py --test /path/Test.csv --sample /path/sample_submission.csv --output /path/submission.csv --alternative /path/submission_conservative.csv
+python3 solution/submission_inference.py --test /path/Test.csv --sample /path/sample_submission.csv --output /path/submission.csv --alternative /path/submission_conservative.csv
 ```
 
 The script validates IDs, column order, row count, finite values and [0,1] bounds. Missing measurements stay missing. Completely unobserved windows, if any, receive a fixed training-mean fallback. It does not fit parameters or alter saved models.
@@ -61,12 +63,17 @@ OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=5 python3 solution/select_and_audit.py
 
 ## Final training and verification
 
-`run_final.py` reads the chosen iteration/epoch counts, refits on all permitted training partitions and regenerates the report. It does not read the competition test. `predict.py` is the only modelling-stage command that reads test acoustic values.
+`run_final.py` reads the chosen iteration/epoch counts and refits on all permitted training partitions. It does not read the competition test. `submission_inference.py` and its modular equivalent `predict.py` are the only modelling-stage entry points that read test acoustic values.
 
 ```bash
 OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=6 python3 solution/run_final.py
-OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=5 python3 solution/predict.py
+OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=5 python3 solution/test_inference.py
+OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=5 python3 solution/submission_inference.py
+OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=5 python3 solution/verify_reproduction.py
 python3 solution/make_report.py
+python3 solution/package_solution.py --inventory-only
 ```
+
+`test_inference.py` uses the local audit arrays produced by `select_and_audit.py`; these raw arrays are omitted from the distribution. It checks row-order and per-window independence, missing-window handling, single-cell inputs and the CSV contract. `verify_reproduction.py` uses only saved models and competition inputs for inference, comparing both CSVs byte for byte without changing the delivered files. After committing code, `python3 solution/package_solution.py` builds and checks the ZIP with the Git revision and a SHA-256 manifest.
 
 Inspect `VALIDATION_REPORT.md` for the exact data construction, baseline comparisons, stress scenarios, clustering of uncertainty, and limitations. The public-source disclosure must be posted through the competition discussion board as required by the rules. Uploading the submission and posting the disclosure are left to the participant; neither action has been performed automatically.

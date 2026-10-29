@@ -1,0 +1,11 @@
+{
+  "bit_for_bit_reproduced": true,
+  "original_entrypoint": "submission_inference.py",
+  "reproduction_entrypoint": "predict.py",
+  "device": "cpu",
+  "test_used_for": "inference and output reproduction only",
+  "sha256": {
+    "submission.csv": "5a9cbf8b4a2d35fb642f5aad40d71839983a962156f2b3b67267b1ae562e54d5",
+    "submission_conservative.csv": "c788aa6b1809df433b4d1cb2002bf1ab3267eca9922d8a6246f5a768cd5e2c99"
+  }
+}

@@ -48,6 +48,18 @@ The predeclared weighted mean of audit scenario RMSEs is 0.0982. Do not interpre
 
 Detailed no-addition, weak, medium and strong fraction results, continuous-evidence AUC, signed biases and perturbation sensitivity are in `reports/audit_metrics.json`. Frequency reversal and time shuffling are sensitivity checks, not evidence of natural vessel identity. The model's response to a uniform gain shift exposes dependence on acquisition conditions. Rounding to 0.1 and 0.5 dB checks sensitivity to numerical precision.
 
+The controls below use the same first 1,200 standard audit examples. Rounding measurably changes predictions, indicating limited precision robustness. These controls were evaluated after selection and did not alter the frozen recipe. Station-level sample sizes, errors and signed biases are available in `reports/audit_by_site.csv`.
+
+| Fixed perturbation | RMSE | Mean absolute prediction change |
+|---|---:|---:|
+| Unmodified comparison subset | 0.0996 | 0.0000 |
+| global gain plus6 | 0.1034 | 0.0134 |
+| time reversal | 0.1002 | 0.0098 |
+| time shuffle | 0.1451 | 0.0585 |
+| frequency reversal | 0.3825 | 0.3131 |
+| quantize to 0p1 db | 0.1073 | 0.0159 |
+| quantize to 0p5 db | 0.1091 | 0.0266 |
+
 ## Reproducibility and compute
 
 Random seeds, model parameters, exact selected sources, dependency versions, trained weights and inference checksums are included. Training used local Apple Silicon hardware with 11 CPU cores, 18 GB RAM, macOS and the Apple MPS GPU for the neural network. Final inference runs on CPU. Seeded GPU training may exhibit floating-point nondeterminism; the saved CPU inference artifacts are the reproducibility authority.
@@ -56,6 +68,8 @@ Random seeds, model parameters, exact selected sources, dependency versions, tra
 |---|---:|---:|---:|
 | development | 100,000 | 8.3 | 1073 |
 | neural_development | 80,000 | 13.7 | 1150 |
+| final | 160,000 | 10.5 | 1724 |
+| neural_final | 100,000 | 11.6 | 1296 |
 
 Per-process RSS does not necessarily include every GPU allocation. Model sizes, final inference runtime, memory and output hashes are recorded by the packaging and inference scripts. Numerical tests cover linear energy arithmetic, mask consistency, correct frequency band placement, normalization invariance, split isolation and seeded augmentation repeatability.
 

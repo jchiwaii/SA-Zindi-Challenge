@@ -1,0 +1,9 @@
+{
+  "finite_and_bounded": true,
+  "row_order_invariance": true,
+  "per_window_independence": true,
+  "max_row_order_difference": 0.0,
+  "max_single_window_difference": 8.940696716308594e-08,
+  "test_acoustic_values_read": false,
+  "csv_order_empty_window_and_single_cell_checked": true
+}

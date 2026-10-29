@@ -1,0 +1,31 @@
+{
+  "test_sha256": "3ef819192c05c4308b66564e6307e6f4f26fe806afe96ec93e2d15f25a3474d4",
+  "sample_sha256": "b9ca88ef9249e34572a564adc87025c4186a59bb7b4836a53f09c4208e36693a",
+  "selection_sha256": "04771d0784bea47d672de54eab6239bde6f8c652587f8c6079d609318735fe9f",
+  "models": {
+    "runs/final/evidence.joblib": "a4fd8f753ae6d7e3dc060ba5dff39a33faefa02698c67c6925970b7e9016fb85",
+    "runs/final/lightgbm.joblib": "34d6766085edd539956d8885f37a6d75fd5a8834fcf10f237ed81434d01fa4b7",
+    "runs/final/energy_baseline.joblib": "4b5929dcc8c40bbd514be42386df756ed4008488f77d4a2d9f20ed5fcd0e09bc",
+    "runs/final/templates.npy": "e2377d7099d059adb8463673bcd0103e2781659325940885263401cf9e1f6017",
+    "runs/final/catboost.cbm": "7754e372513f2267b1c8f6af52045a8a5f64ff5cf98e6d34c56ce61b721d1a49",
+    "runs/final/conservative.joblib": "1968755822c0b0fa6eff7f782da946070572687d9b12944b07dca0dbe7e6556a",
+    "runs/neural_final/model.pt": "1b0b8eb030a27da83492005ee674500319d9bd97041687014ac70d11581653be",
+    "runs/neural_final/normalizer.npz": "7291ddeb0836d4da627411f35a6de2808c13d8592c95bdc933f34c2a6a91e4ce",
+    "runs/neural_final/templates.npy": "e2377d7099d059adb8463673bcd0103e2781659325940885263401cf9e1f6017"
+  },
+  "outputs": {
+    "submission.csv": {
+      "rows": 1500,
+      "sha256": "5a9cbf8b4a2d35fb642f5aad40d71839983a962156f2b3b67267b1ae562e54d5"
+    },
+    "submission_conservative.csv": {
+      "rows": 1500,
+      "sha256": "c788aa6b1809df433b4d1cb2002bf1ab3267eca9922d8a6246f5a768cd5e2c99"
+    }
+  },
+  "wall_seconds": 3.2937276363372803,
+  "peak_rss_mb": 701.859375,
+  "device": "cpu",
+  "test_used_for": "inference only; no fitting, selection, calibration, or training examples",
+  "empty_window_fallback": "Training augmentation mean / addition rate; fixed before reading test."
+}

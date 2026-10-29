@@ -1,30 +1,69 @@
 """Write the evidence report from saved results; no competition test-data analysis."""
-import json,os
-os.environ.setdefault('MPLCONFIGDIR','/tmp/mpl-vessel')
+
+import json, os
+
+os.environ.setdefault("MPLCONFIGDIR", "/tmp/mpl-vessel")
 import matplotlib
-matplotlib.use('Agg')
+
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 from simulation import BASE
 from train import SCENARIOS
 
-def read(path):return json.loads(path.read_text())
+
+def read(path):
+    return json.loads(path.read_text())
+
 
 def main():
-    out=BASE/'reports';audit=read(out/'audit_metrics.json');selection=read(out/'frozen_selection.json')
-    tree=read(BASE/'runs/development/validation_metrics.json');neural=read(BASE/'runs/neural_development/validation_metrics.json')
-    rows=[]
+    out = BASE / "reports"
+    audit = read(out / "audit_metrics.json")
+    selection = read(out / "frozen_selection.json")
+    tree = read(BASE / "runs/development/validation_metrics.json")
+    neural = read(BASE / "runs/neural_development/validation_metrics.json")
+    predictions = pd.read_csv(out / "audit_predictions.csv.gz")
+    site_rows = []
+    for (scenario, site), group in predictions.groupby(["scenario", "site"]):
+        error = group.prediction - group.share
+        site_rows.append(
+            dict(
+                scenario=scenario,
+                site=site,
+                n=len(group),
+                rmse=float(np.sqrt(np.mean(error**2))),
+                bias=float(error.mean()),
+            )
+        )
+    pd.DataFrame(site_rows).to_csv(out / "audit_by_site.csv", index=False)
+    standard_subset = predictions[predictions.scenario == "standard"].iloc[:1200]
+    subset_rmse = np.sqrt(np.mean((standard_subset.prediction - standard_subset.share) ** 2))
+    control_rows = [f"| Unmodified comparison subset | {subset_rmse:.4f} | 0.0000 |"]
+    for name, values in audit["standard"]["sensitivity_controls"].items():
+        control_rows.append(
+            f'| {name.replace("_", " ")} | {values["rmse"]:.4f} | '
+            f'{values["mean_absolute_prediction_change"]:.4f} |'
+        )
+    rows = []
     for s in SCENARIOS:
-        ci=audit[s]['rmse_cluster_bootstrap_95_interval']
-        rows.append(f'| {s} | {tree["constant"][s]["rmse"]:.4f} | {tree["received_energy"][s]["rmse"]:.4f} | {tree["lightgbm"][s]["rmse"]:.4f} | {tree["catboost"][s]["rmse"]:.4f} | {neural[s]["rmse"]:.4f} | {audit[s]["primary"]["rmse"]:.4f} | {ci[0]:.4f}–{ci[2]:.4f} |')
-    weights=', '.join(f'{name}: {weight:.4f}' for name,weight in zip(selection['component_order'],selection['weights']))
-    summaries=[]
-    for name in ['development','neural_development','final','neural_final']:
-        p=BASE/'runs'/name/'training_summary.json'
+        ci = audit[s]["rmse_cluster_bootstrap_95_interval"]
+        rows.append(
+            f'| {s} | {tree["constant"][s]["rmse"]:.4f} | {tree["received_energy"][s]["rmse"]:.4f} | {tree["lightgbm"][s]["rmse"]:.4f} | {tree["catboost"][s]["rmse"]:.4f} | {neural[s]["rmse"]:.4f} | {audit[s]["primary"]["rmse"]:.4f} | {ci[0]:.4f}–{ci[2]:.4f} |'
+        )
+    weights = ", ".join(
+        f"{name}: {weight:.4f}"
+        for name, weight in zip(selection["component_order"], selection["weights"])
+    )
+    summaries = []
+    for name in ["development", "neural_development", "final", "neural_final"]:
+        p = BASE / "runs" / name / "training_summary.json"
         if p.exists():
-            info=read(p);summaries.append(f'| {name} | {info["n_train"]:,} | {info["wall_seconds"]/60:.1f} | {info["peak_rss_mb"]:.0f} |')
-    text=f'''# Vessel-addition submission: validation and reproducibility report
+            info = read(p)
+            summaries.append(
+                f'| {name} | {info["n_train"]:,} | {info["wall_seconds"]/60:.1f} | {info["peak_rss_mb"]:.0f} |'
+            )
+    text = f"""# Vessel-addition submission: validation and reproducibility report
 
 ## Status and meaning of the results
 
@@ -69,6 +108,12 @@ The predeclared weighted mean of audit scenario RMSEs is {audit['weighted_rmse']
 
 Detailed no-addition, weak, medium and strong fraction results, continuous-evidence AUC, signed biases and perturbation sensitivity are in `reports/audit_metrics.json`. Frequency reversal and time shuffling are sensitivity checks, not evidence of natural vessel identity. The model's response to a uniform gain shift exposes dependence on acquisition conditions. Rounding to 0.1 and 0.5 dB checks sensitivity to numerical precision.
 
+The controls below use the same first 1,200 standard audit examples. Rounding measurably changes predictions, indicating limited precision robustness. These controls were evaluated after selection and did not alter the frozen recipe. Station-level sample sizes, errors and signed biases are available in `reports/audit_by_site.csv`.
+
+| Fixed perturbation | RMSE | Mean absolute prediction change |
+|---|---:|---:|
+{chr(10).join(control_rows)}
+
 ## Reproducibility and compute
 
 Random seeds, model parameters, exact selected sources, dependency versions, trained weights and inference checksums are included. Training used local Apple Silicon hardware with 11 CPU cores, 18 GB RAM, macOS and the Apple MPS GPU for the neural network. Final inference runs on CPU. Seeded GPU training may exhibit floating-point nondeterminism; the saved CPU inference artifacts are the reproducibility authority.
@@ -90,25 +135,68 @@ The source audit plots and held-out examples are diagnostic acoustic evidence. T
 The draft `EXTERNAL_DATA_DISCLOSURE.md` supplies source URLs, the exact version, access instructions, licence attribution and preprocessing. It has **not** been posted on your behalf. Publish the required declaration in the challenge discussion board before relying on external-data eligibility. The public discussion route showed the information page while signed out, so participant discussions were not reviewed. No challenge data or private code was sent to other participants, and no competition submission was uploaded.
 
 Sources: [competition](https://zindi.world/competitions/french-embassy-underwater-vessel-noise-challenge), [VTUAD v1.3.2](https://doi.org/10.5281/zenodo.23037895), [Ocean Networks Canada](https://www.oceannetworks.ca/data/).
-'''
-    (BASE/'VALIDATION_REPORT.md').write_text(text)
+"""
+    (BASE / "VALIDATION_REPORT.md").write_text(text)
     # Clear held-out performance plots, with no test-distribution inspection.
-    predictions=pd.read_csv(out/'audit_predictions.csv.gz')
-    fig,axes=plt.subplots(1,3,figsize=(14,4),layout='constrained')
-    std=predictions[predictions.scenario=='standard']
-    axes[0].hexbin(std.share,std.prediction,gridsize=35,mincnt=1,cmap='viridis');axes[0].plot([0,1],[0,1],'k--',lw=1)
-    axes[0].set(xlabel='Known added energy fraction',ylabel='Estimated fraction',title='Untouched standard audit')
-    means=predictions.groupby('scenario').apply(lambda x:np.sqrt(np.mean((x.prediction-x.share)**2)),include_groups=False).reindex(SCENARIOS)
-    axes[1].barh(SCENARIOS,means,color='#24788f');axes[1].set(xlabel='RMSE (lower is better)',title='Independent stress scenarios');axes[1].invert_yaxis()
-    grouped=std.assign(bin=pd.cut(std.share,[-.001,0,.02,.05,.1,.2,.4,1])).groupby('bin',observed=True).agg(target=('share','mean'),predicted=('prediction','mean'),n=('share','size'))
-    axes[2].plot(grouped.target,grouped.predicted,'o-',label='Mean estimate');axes[2].plot([0,1],[0,1],'k--',lw=1);axes[2].set(xlabel='Mean true share in bin',ylabel='Mean prediction',title='Audit calibration by energy fraction')
-    fig.savefig(out/'audit_performance.png',dpi=160);plt.close(fig)
-    examples=np.load(out/'audit_examples.npz');x=examples['db'];y=examples['target'];p=examples['prediction']
-    indexes=[int(np.argmin(y)),int(np.argmin(abs(y-.04))),int(np.argmin(abs(y-.2))),int(np.argmax(abs(y-p)))]
-    fig,axes=plt.subplots(2,2,figsize=(12,7),layout='constrained')
-    for ax,i in zip(axes.flat,indexes):
-        im=ax.imshow(x[i].T,aspect='auto',origin='lower',cmap='magma');ax.set(title=f'Audit example {i}: true {y[i]:.3f}, estimate {p[i]:.3f}',xlabel='Relative minute',ylabel='Frequency band (low → high)');fig.colorbar(im,ax=ax,label='Export dB (uncalibrated)')
-    fig.savefig(out/'audit_examples.png',dpi=150);plt.close(fig)
-    print('Wrote evidence report and audit figures.')
+    fig, axes = plt.subplots(1, 3, figsize=(14, 4), layout="constrained")
+    std = predictions[predictions.scenario == "standard"]
+    axes[0].hexbin(std.share, std.prediction, gridsize=35, mincnt=1, cmap="viridis")
+    axes[0].plot([0, 1], [0, 1], "k--", lw=1)
+    axes[0].set(
+        xlabel="Known added energy fraction",
+        ylabel="Estimated fraction",
+        title="Untouched standard audit",
+    )
+    means = (
+        predictions.groupby("scenario")
+        .apply(lambda x: np.sqrt(np.mean((x.prediction - x.share) ** 2)), include_groups=False)
+        .reindex(SCENARIOS)
+    )
+    axes[1].barh(SCENARIOS, means, color="#24788f")
+    axes[1].set(xlabel="RMSE (lower is better)", title="Independent stress scenarios")
+    axes[1].invert_yaxis()
+    grouped = (
+        std.assign(bin=pd.cut(std.share, [-0.001, 0, 0.02, 0.05, 0.1, 0.2, 0.4, 1]))
+        .groupby("bin", observed=True)
+        .agg(target=("share", "mean"), predicted=("prediction", "mean"), n=("share", "size"))
+    )
+    axes[2].plot(grouped.target, grouped.predicted, "o-", label="Mean estimate")
+    axes[2].plot([0, 1], [0, 1], "k--", lw=1)
+    axes[2].set(
+        xlabel="Mean true share in bin",
+        ylabel="Mean prediction",
+        title="Audit calibration by energy fraction",
+    )
+    fig.savefig(out / "audit_performance.png", dpi=160)
+    plt.close(fig)
+    if not (out / "audit_examples.npz").exists():
+        print(
+            "Report complete. Raw audit arrays are omitted from the distribution; existing example plots are retained."
+        )
+        return
+    examples = np.load(out / "audit_examples.npz")
+    x = examples["db"]
+    y = examples["target"]
+    p = examples["prediction"]
+    indexes = [
+        int(np.argmin(y)),
+        int(np.argmin(abs(y - 0.04))),
+        int(np.argmin(abs(y - 0.2))),
+        int(np.argmax(abs(y - p))),
+    ]
+    fig, axes = plt.subplots(2, 2, figsize=(12, 7), layout="constrained")
+    for ax, i in zip(axes.flat, indexes):
+        im = ax.imshow(x[i].T, aspect="auto", origin="lower", cmap="magma")
+        ax.set(
+            title=f"Audit example {i}: true {y[i]:.3f}, estimate {p[i]:.3f}",
+            xlabel="Relative minute",
+            ylabel="Frequency band (low → high)",
+        )
+        fig.colorbar(im, ax=ax, label="Export dB (uncalibrated)")
+    fig.savefig(out / "audit_examples.png", dpi=150)
+    plt.close(fig)
+    print("Wrote evidence report and audit figures.")
 
-if __name__=='__main__':main()
+
+if __name__ == "__main__":
+    main()
