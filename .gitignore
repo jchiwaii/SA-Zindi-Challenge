@@ -1,0 +1,47 @@
+# Challenge inputs: keep licensed source data out of Git.
+/South_African_Real_Acoustics/
+/South_African_Real_Acoustics.zip
+/Test.csv
+/sample_submission.csv
+/SampleSubmission.csv
+/maritime_starter_notebook.ipynb
+
+# Downloaded corpora, prepared arrays and training runs.
+/solution/external/
+/solution/cache/
+/solution/runs/
+*.parquet
+*.wav
+*.flac
+*.deflate
+*.partial
+*.npy
+*.npz
+*.joblib
+*.cbm
+*.pt
+*.pth
+*.onnx
+
+# Generated submissions and distributable bundles stay local.
+/submission*.csv
+/submission*_inference_report.json
+/vessel_noise_submission_bundle.zip
+/solution/reports/*.log
+/solution/reports/*.csv.gz
+/solution/reports/execution_status.json
+
+# Python, notebooks, operating-system files and local secrets.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+catboost_info/
+.DS_Store
+.env
+.env.*
+!.env.example

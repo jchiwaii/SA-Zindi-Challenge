@@ -1,0 +1,71 @@
+{
+  "sites": [
+    {
+      "site": 1,
+      "source_rows": 1001174,
+      "screened_rows": 20450,
+      "windows_kept": 66604
+    },
+    {
+      "site": 2,
+      "source_rows": 44640,
+      "screened_rows": 0,
+      "windows_kept": 2976
+    },
+    {
+      "site": 3,
+      "source_rows": 5928,
+      "screened_rows": 0,
+      "windows_kept": 456
+    },
+    {
+      "site": 4,
+      "source_rows": 47552,
+      "screened_rows": 32,
+      "windows_kept": 3168
+    },
+    {
+      "site": 5,
+      "source_rows": 250717,
+      "screened_rows": 133,
+      "windows_kept": 16707
+    },
+    {
+      "site": 6,
+      "source_rows": 4121,
+      "screened_rows": 0,
+      "windows_kept": 317
+    },
+    {
+      "site": 7,
+      "source_rows": 169488,
+      "screened_rows": 45,
+      "windows_kept": 27115
+    },
+    {
+      "site": 9,
+      "source_rows": 53767,
+      "screened_rows": 1085,
+      "windows_kept": 6688
+    },
+    {
+      "site": 10,
+      "source_rows": 3660,
+      "screened_rows": 0,
+      "windows_kept": 244
+    },
+    {
+      "site": 13,
+      "source_rows": 134732,
+      "screened_rows": 30,
+      "windows_kept": 8994
+    }
+  ],
+  "split_counts": "{(np.str_('audit_site'), 13): 8994, (np.str_('audit_time'), 1): 9764, (np.str_('audit_time'), 3): 72, (np.str_('audit_time'), 4): 432, (np.str_('audit_time'), 5): 2057, (np.str_('audit_time'), 6): 70, (np.str_('audit_time'), 7): 5077, (np.str_('audit_time'), 9): 1081, (np.str_('audit_time'), 10): 44, (np.str_('train'), 1): 46496, (np.str_('train'), 3): 312, (np.str_('train'), 4): 2232, (np.str_('train'), 5): 12495, (np.str_('train'), 6): 202, (np.str_('train'), 7): 16942, (np.str_('train'), 9): 4588, (np.str_('train'), 10): 152, (np.str_('val_site'), 2): 2976, (np.str_('val_time'), 1): 10344, (np.str_('val_time'), 3): 72, (np.str_('val_time'), 4): 504, (np.str_('val_time'), 5): 2155, (np.str_('val_time'), 6): 45, (np.str_('val_time'), 7): 5096, (np.str_('val_time'), 9): 1019, (np.str_('val_time'), 10): 48}",
+  "shape": [
+    133269,
+    15,
+    25
+  ],
+  "sha256_windows": "7ebbbc2f9ba9228d8d82d95a211793750d04d2c1143ec61da2080c0a4f7aa4a1"
+}

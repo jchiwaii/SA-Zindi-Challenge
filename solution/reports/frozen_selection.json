@@ -1,0 +1,47 @@
+{
+  "tree_run": "development",
+  "neural_run": "neural_development",
+  "component_order": [
+    "lightgbm",
+    "catboost",
+    "conservative",
+    "neural",
+    "lightgbm_evidence_weighted",
+    "catboost_evidence_weighted",
+    "conservative_evidence_weighted",
+    "neural_evidence_weighted"
+  ],
+  "weights": [
+    0.0,
+    0.0,
+    6.519096024154008e-18,
+    1.1306526242035313e-17,
+    0.3161368241814505,
+    0.036519292116407955,
+    0.0,
+    0.6473438837021416
+  ],
+  "conservative_weights": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    1.0,
+    0.0
+  ],
+  "evidence": "lightgbm_classifier",
+  "selection_objective": "Weighted validation MSE over six predeclared scenarios",
+  "scenario_weights": {
+    "standard": 0.4,
+    "weak": 0.25,
+    "strong": 0.1,
+    "channel_shift": 0.1,
+    "missing": 0.1,
+    "flat": 0.05
+  },
+  "validation_rmse": 0.07284929334397344,
+  "test_inputs_read": false,
+  "audit_used_for_selection": false
+}
