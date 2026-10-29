@@ -1,0 +1,37 @@
+{
+  "native": {
+    "n": 1600,
+    "rmse_original": 0.08177351427955395,
+    "rmse_without_gate": 0.07421550311077021,
+    "evidence_auc": 0.8464614322633869,
+    "bias": -0.006422009246132223
+  },
+  "tilted": {
+    "n": 1600,
+    "rmse_original": 0.14854923929911765,
+    "rmse_without_gate": 0.13778389543102335,
+    "evidence_auc": 0.7695064791838985,
+    "bias": -0.05130928429962351
+  },
+  "local_channel": {
+    "n": 1600,
+    "rmse_original": 0.2084219326445129,
+    "rmse_without_gate": 0.19454969050644574,
+    "evidence_auc": 0.6856305362247638,
+    "bias": -0.10945183361129401
+  },
+  "smooth_channel": {
+    "n": 1600,
+    "rmse_original": 0.19768441499845246,
+    "rmse_without_gate": 0.1841689676098343,
+    "evidence_auc": 0.7042627246362391,
+    "bias": -0.09397907289840673
+  },
+  "held_channel": {
+    "n": 1600,
+    "rmse_original": 0.24353577622216088,
+    "rmse_without_gate": 0.23079571053975415,
+    "evidence_auc": 0.6601588897148264,
+    "bias": -0.13668361763461442
+  }
+}
