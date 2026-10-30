@@ -1,0 +1,21 @@
+{
+  "rows": 1500,
+  "output_sha256": "8495bd9ab7c9eb1bcf63c5d69fc3cd79afb37f2b3c134e34f17f33b1fecd42d4",
+  "test_sha256": "3ef819192c05c4308b66564e6307e6f4f26fe806afe96ec93e2d15f25a3474d4",
+  "sample_sha256": "b9ca88ef9249e34572a564adc87025c4186a59bb7b4836a53f09c4208e36693a",
+  "models": {
+    "features.json": "368332afaf70e1b9d5288b3ad667fea59cb02bd69439efd110402f4100e5f08a",
+    "evidence.joblib": "9e93a16bd25d3eade02f9080e5462955079e2a59b0610d48a1b45664bc1e8886",
+    "selection.json": "542c7cff6963c980d2ca7219ac0dd114ea527570c6b7f0b8ea94103e6bbe658e",
+    "combined_selection.json": "b869300e9c1b2c9905fd65bce0e0fbd52b81d6fe8f14640cf3582b7ab461c34b",
+    "temporal.joblib": "14fc40061ac4e167ebefed42aaafb9cc6b6c2b6d1e53b043116ac6b92a10c998",
+    "full.joblib": "6f111637424e97884c599d060fe541bf8e164aaa24b6ba377744dd1eba03a28a"
+  },
+  "wall_seconds": 6.368110179901123,
+  "peak_rss_mb": 468.3125,
+  "test_used_for": "saved-weight inference only",
+  "neural_models": {
+    "model.pt": "e4f771782a1b70223df32cefe8f0e0dc78e9dafd0178122fb491561bae16c798",
+    "normalizer.npz": "1637a372626383add91485e8d9d7055853b839c136cbcaa10f814a51184f8b3f"
+  }
+}

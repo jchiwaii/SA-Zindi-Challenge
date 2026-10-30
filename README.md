@@ -2,8 +2,16 @@
 
 A reproducible local pipeline for estimating the controlled vessel-reference energy fraction in the South African underwater-noise challenge.
 
-- [Execution instructions](solution/README.md)
-- [Validation evidence and limitations](solution/VALIDATION_REPORT.md)
+The original submissions failed on the public leaderboard (reported RMSE 0.2374
+and 0.2390). The current revision broadens channel variation and predicts energy
+fraction directly. Use `submission_v2.csv` and the V2 bundle; its leaderboard
+performance has not yet been measured.
+
+- [V2 execution instructions](solution/V2_README.md)
+- [V2 failure analysis and full comparison](solution/V2_REPORT.md)
+
+- [Historical V1 execution instructions](solution/README.md)
+- [Historical V1 local evaluation](solution/VALIDATION_REPORT.md)
 - [External-data declaration](solution/EXTERNAL_DATA_DISCLOSURE.md)
 - [Experiment design](solution/EXPERIMENT_PLAN.md)
 

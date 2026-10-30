@@ -65,6 +65,11 @@ def main():
             )
     text = f"""# Vessel-addition submission: validation and reproducibility report
 
+**Historical V1 local evaluation.** Subsequent participant-reported public RMSE
+was 0.237425967 (primary) and 0.239001864 (alternative), with evidence AUC
+0.463533333. The original generator did not establish reliable transfer. See
+`V2_REPORT.md` for the revised study; the original local numbers below are retained.
+
 ## Status and meaning of the results
 
 This package estimates the fraction of measured energy due to an added vessel-passage reference. It does **not** estimate all naturally occurring vessel energy, vessel count, vessel size, calibrated physical pressure or a calibrated probability of natural vessel presence. No leaderboard score or winning rank has been verified.

@@ -31,3 +31,11 @@ The original audit has already informed development; revision-2 results are a
 new development study, not a claim that the historical audit remains untouched.
 There are still no verified natural-vessel labels or validated physical-pressure
 claims. No additional external corpus is introduced.
+
+After the tree-only study showed improved channel robustness but worse native-
+source error, a manually specified additional comparison was added: train the
+existing V1 physical-head neural architecture on the V2 generator. Its early
+stopping and any combination with tree predictions use the same validation
+partitions only. Repeated audit comparisons are development diagnostics, not a
+new untouched confirmatory experiment. Final tree fits can run independently
+because their iteration counts are already fixed.

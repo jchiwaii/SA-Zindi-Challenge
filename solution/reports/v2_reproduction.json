@@ -1,0 +1,10 @@
+{
+  "bit_for_bit_reproduced": true,
+  "sha256": "8495bd9ab7c9eb1bcf63c5d69fc3cd79afb37f2b3c134e34f17f33b1fecd42d4",
+  "rows": 1500,
+  "entrypoints": [
+    "submission_inference_v2.py",
+    "v2_predict.py"
+  ],
+  "test_used_for": "saved-weight inference and reproduction only"
+}

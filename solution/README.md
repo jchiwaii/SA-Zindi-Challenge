@@ -1,5 +1,9 @@
 # Underwater vessel-noise submission
 
+**Historical V1 procedure.** The participant subsequently reported public RMSE
+0.237425967 and 0.239001864, with evidence AUC 0.463533333. See `V2_README.md` and
+`V2_REPORT.md` for the revised submission and transfer study.
+
 This is a local, open-source modelling pipeline for the Zindi underwater vessel-noise challenge. It estimates **controlled added-reference energy**, not all natural vessel noise. A leaderboard rank is not guaranteed or verified.
 
 ## Deliverables

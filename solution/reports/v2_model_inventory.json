@@ -1,0 +1,141 @@
+{
+  "models": {
+    "runs/v2_development/evidence.joblib": {
+      "bytes": 4193670,
+      "sha256": "c8ae5e254a65456b40b2040041c0b56894ba7580c5ded73e61fa5fc1ac0938d7"
+    },
+    "runs/v2_development/temporal.joblib": {
+      "bytes": 6879428,
+      "sha256": "dc2994784d819daba8edbaca8782c8881cf53307b5fa06e438d00f684e30035f"
+    },
+    "runs/v2_development/full.joblib": {
+      "bytes": 8807516,
+      "sha256": "03ca8d364ea40fd14717306f1dbd474c69b69255b673b19dba7ba2aff5b06d60"
+    },
+    "runs/v2_neural_development/model.pt": {
+      "bytes": 2091467,
+      "sha256": "05bb53b4e68782ec3e07f133601ffda3a694a5776f17fccafa60c6f3ce5bd6b2"
+    },
+    "runs/v2_neural_development/normalizer.npz": {
+      "bytes": 5124,
+      "sha256": "21d52276f53757144ac93b2af6409db7621cdf98bd9c21f00411d958a81cd10d"
+    },
+    "runs/v2_final/evidence.joblib": {
+      "bytes": 4154806,
+      "sha256": "9e93a16bd25d3eade02f9080e5462955079e2a59b0610d48a1b45664bc1e8886"
+    },
+    "runs/v2_final/temporal.joblib": {
+      "bytes": 6860559,
+      "sha256": "14fc40061ac4e167ebefed42aaafb9cc6b6c2b6d1e53b043116ac6b92a10c998"
+    },
+    "runs/v2_final/full.joblib": {
+      "bytes": 8776332,
+      "sha256": "6f111637424e97884c599d060fe541bf8e164aaa24b6ba377744dd1eba03a28a"
+    },
+    "runs/v2_neural_final/model.pt": {
+      "bytes": 2091467,
+      "sha256": "e4f771782a1b70223df32cefe8f0e0dc78e9dafd0178122fb491561bae16c798"
+    },
+    "runs/v2_neural_final/normalizer.npz": {
+      "bytes": 5124,
+      "sha256": "1637a372626383add91485e8d9d7055853b839c136cbcaa10f814a51184f8b3f"
+    }
+  },
+  "deployment_model_bytes": 21888288,
+  "training_runs": {
+    "v2_development": {
+      "n_train": 120000,
+      "seed": 44019,
+      "wall_seconds": 441.426983833313,
+      "peak_rss_mb": 1745.09375,
+      "iterations": {
+        "full": 2196,
+        "temporal": 2199,
+        "evidence": 1154
+      },
+      "is_final": false
+    },
+    "v2_neural_development": {
+      "n_train": 100000,
+      "seed": 71391,
+      "device": "mps",
+      "chosen_epoch": 12,
+      "epochs_run": 21,
+      "cosine_schedule_epochs": 50,
+      "wall_seconds": 940.6917388439178,
+      "peak_rss_mb": 1146.265625,
+      "is_final": false,
+      "test_used": false
+    },
+    "v2_final": {
+      "n_train": 160000,
+      "seed": 44019,
+      "wall_seconds": 627.694620847702,
+      "peak_rss_mb": 1959.921875,
+      "iterations": {
+        "full": 2196,
+        "temporal": 2199,
+        "evidence": 1154
+      },
+      "is_final": true
+    },
+    "v2_neural_final": {
+      "n_train": 100000,
+      "seed": 71391,
+      "device": "mps",
+      "chosen_epoch": 12,
+      "epochs_run": 12,
+      "cosine_schedule_epochs": 50,
+      "wall_seconds": 507.95811104774475,
+      "peak_rss_mb": 1251.796875,
+      "is_final": true,
+      "test_used": false
+    }
+  },
+  "hardware": {
+    "platform": "macOS-27.0.1-arm64-arm-64bit-Mach-O",
+    "architecture": "arm64",
+    "logical_cpu_count": null,
+    "ram_bytes": 19327352832,
+    "training_neural_device": "Apple MPS",
+    "inference_device": "CPU"
+  },
+  "code_sha256": {
+    "acoustic_model.py": "0b11b7c8dfe5d8f1539ab6a57cb228021f1dcf582b1d2876f4545ee5a39ee776",
+    "audit_data.py": "4194b40bd2c08153e47dc7da7debce252ed32c8859b2686203cce4cf44d84e05",
+    "download_external.py": "24fe64d9ff16d0e9d360b30162707a8891780d046b81a3b9c229508d6e9b3fa0",
+    "inspect_sources.py": "fe1bacd1f4a37052c9d90253ee2a8a31870777349a960ac60fa3adcbfc6afdee",
+    "make_report.py": "04f056b01d532342354f74dd515dcb0cf4276142d6089dc53369321b6eecb05f",
+    "make_standalone.py": "2b6b877394b66b835126b888b33c5755d4980b2c52a80a7b7bc0fd0dd8293322",
+    "neural.py": "7b9438257c6ed4dfe90189ab6602c8a316c82ecc1776c30d9500977a17053705",
+    "package_solution.py": "6d2a0c0dbb1ee45cb63bda54b659bcac15a9f364c6c896bd5d99ebdaa9b09adf",
+    "predict.py": "13687ceab638ed9ce03b27c07d86e49627ad1e084d5f6707e5969103bcf76c65",
+    "prepare_backgrounds.py": "70a4fc6ba7db35b6f8230660fdbbf4b7eb5a97d5930537ea737fdba37899bb93",
+    "prepare_external.py": "043ac5c82656d8d1b901d0d95ba44797e51f1143d0b383474e417d93b2035ec0",
+    "run_development.py": "1c1f3bab92043ed2959f38963f4a2fee9762495cc2bab4adcf14e7292972ae61",
+    "run_final.py": "98ace89ae3a06087d6f54a4b4f106b2e413499c5eb15ed397201ecc1dc98a86a",
+    "select_and_audit.py": "8f7f0f84eaf6e5f1fd6f5cce21f92b3eaf78c65e6471836994ec6cc333ae9e40",
+    "simulation.py": "9a5cfb2ba5b131c266276129ac7a5bc0c3f28a2e118b296a9fc7f1bcf4e4c916",
+    "submission_inference.py": "2756714049fd055c4a2ab9c5c69c2304e5382f746e8c77e1761b321530b27ce1",
+    "submission_inference_v2.py": "8a02bafe50cef17900d71528423f4d55407608a2cd70e1b5859f2c0406cd8b7e",
+    "test_inference.py": "be1a3d5f493f4151902e478b0f1c18b63780c78fd904983984c343522c1479dc",
+    "test_physics.py": "f6124ec77b073cb4ffc8d9dd3081e320d5f1338fca341f8807fd01ae66bb8336",
+    "train.py": "4b413d1d5622de4ae137f95d401336a2f6cde861cba7e2e2444729646292d33a",
+    "v2_audit.py": "689a3d1324a951caf50758a8d288a434c8c9cc90799e7a37d3e1372f8a07f663",
+    "v2_diagnose.py": "6a951cbd730163173323ed567866a03dac2d2bc056e1b06593f38325eb76c5f4",
+    "v2_finalize.py": "c48894dd8aacca7930ca460032ffb926ba5af1d1f7e10ba502e98368a6d26df5",
+    "v2_inventory.py": "b181baa5040dc566dc1840257636585c2cf60a2af1271d5ce19e5b166a3e5461",
+    "v2_make_standalone.py": "7a599dfcb9a53d0739fbdfeb5b1150ca5427b0b41f25a3b8bc91aa93aee149a5",
+    "v2_models.py": "e8ea19529be02fd96ed32def01dbaaea1ed87d050fe3e9c49f9e8b8e6964df02",
+    "v2_neural.py": "06a84bd3b885534e3479ce88dc9139fe04d2f7aa60d7573f7ace9f8357e05388",
+    "v2_package.py": "e5f105a543be11ca588a2f025a79efb20eea4ee0d338a087b46b64e833468e2c",
+    "v2_predict.py": "74e75f9b87ee93424a5f21988fba34af8f3148c9227920510700b2cb191ec2fb",
+    "v2_report.py": "c57202b55d6767983d259780e6cfb2234d42dbf42f158eb18e986ec760793fe3",
+    "v2_select.py": "3e84d89e6f6b20d04cf7215e1efeeb8723d1ad6b05276024b491fd13ee61deb7",
+    "v2_simulation.py": "f0f8254e898619e1524d3623076dfca1ec4cb62474b10faccc88eeaade933fd7",
+    "v2_test.py": "b1dbf4dd30b1ad78db1dda778794495773abe6991d4da35bcfbad26fd792417f",
+    "v2_train.py": "c784a9407901308045a3ef2765743621a3ae5144c2aa01b5b521fb85a7b8a5f2",
+    "v2_verify.py": "a65186e2f8c4e18cc6a6044e881cc5a4501fe515c1822f5d753318ac0e177b4a",
+    "verify_reproduction.py": "1fbc99fc6615e91876155c35d0ec76d6c73986a731c6adf9e80a513e6311fd81"
+  }
+}

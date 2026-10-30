@@ -11,7 +11,9 @@ FAMILIES = ("native", "tilted", "local_channel", "smooth_channel")
 
 
 class DiverseSimulator(Simulator):
-    def generate(self, n, seed, family="mixed", strength="mixed", return_cells=False):
+    def generate(
+        self, n, seed, family="mixed", strength="mixed", return_cells=False, paired_channels=False
+    ):
         rng = np.random.default_rng(seed)
         idx = rng.choice(self.allowed, n, p=self.weights)
         other = rng.choice(self.allowed, n, p=self.weights)
@@ -41,32 +43,40 @@ class DiverseSimulator(Simulator):
             )
             mean = original.mean(0)
             residual = original - mean
+            channel_rng = (
+                np.random.default_rng(np.random.SeedSequence([seed, i, 2107]))
+                if paired_channels
+                else rng
+            )
             kind = families[i]
             if kind == "native":
                 shape = mean.copy()
                 response_scale = 3.0
             elif kind == "tilted":
-                shape = mean + rng.uniform(-24, 12) * coordinate
-                shape += rng.uniform(-10, 10) * coordinate**2
+                shape = mean + channel_rng.uniform(-24, 12) * coordinate
+                shape += channel_rng.uniform(-10, 10) * coordinate**2
                 response_scale = 5.0
             elif kind == "local_channel":
-                mix = rng.uniform(0.65, 1.0)
+                mix = channel_rng.uniform(0.65, 1.0)
                 shape = mix * profiles[i] + (1 - mix) * mean
-                shape += rng.uniform(-8, 8) * coordinate
+                shape += channel_rng.uniform(-8, 8) * coordinate
                 response_scale = 4.0
             elif kind == "smooth_channel":
-                shape = rng.uniform(-28, 12) * coordinate + rng.uniform(-12, 12) * coordinate**2
+                shape = (
+                    channel_rng.uniform(-28, 12) * coordinate
+                    + channel_rng.uniform(-12, 12) * coordinate**2
+                )
                 response_scale = 7.0
             elif kind == "held_channel":
                 # A distinct smooth response construction, absent from fitting.
-                shape = profiles[i] + rng.uniform(3, 12) * np.sin(
-                    rng.uniform(0.5, 2) * np.pi * coordinate + rng.uniform(-3, 3)
+                shape = profiles[i] + channel_rng.uniform(3, 12) * np.sin(
+                    channel_rng.uniform(0.5, 2) * np.pi * coordinate + channel_rng.uniform(-3, 3)
                 )
                 response_scale = 1.5
             else:
                 raise ValueError(kind)
             response = np.interp(
-                coordinate, np.linspace(-1, 1, 5), rng.normal(0, response_scale, 5)
+                coordinate, np.linspace(-1, 1, 5), channel_rng.normal(0, response_scale, 5)
             )
             residual *= rng.uniform(0.3, 1.8)
             envelope_kind = rng.integers(4)

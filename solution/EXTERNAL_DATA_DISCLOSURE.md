@@ -18,3 +18,11 @@ Permitted training augmentations combine these reference patterns with released 
 No competition test measurements are used for training, fitting preprocessing, tuning, pseudo-labelling or calibrating predictions. No source-identification matching or leaderboard label reconstruction is performed. The South African data remain subject to the competition's own data-use restrictions; this declaration does not apply CC BY 4.0 to those measurements.
 
 This file is a draft, **not a record that the disclosure has been posted**. Publish the source/version/access information in the competition discussion board before relying on external-data eligibility for a submission.
+
+Revision 2 retains exactly the same external corpus and subset. Its training
+augmentation additionally varies broad spectral tilt and curvature, transfers
+relative reference profiles toward independently sampled released South African
+spectra, and applies smooth relative channel responses. Reference temporal
+variation remains recorded data. Background dither and export rounding are
+independent of the addition label. These are declared robustness augmentations,
+not assertions that a particular channel model matches the hidden test generator.

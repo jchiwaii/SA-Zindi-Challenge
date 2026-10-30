@@ -1,0 +1,7 @@
+{
+  "physics_and_mask": true,
+  "paired_channels": true,
+  "row_order_and_per_window": true,
+  "csv_ids_missing_and_single_cell": true,
+  "competition_inputs_read": false
+}

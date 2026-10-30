@@ -16,7 +16,7 @@ def main():
     sim = DiverseSimulator(["val_time", "val_site"], ["val"])
     records = {}
     for family in FAMILIES + ("held_channel",):
-        x, y, meta = sim.generate(1600, 881700, family=family)
+        x, y, meta = sim.generate(1600, 881700, family=family, paired_channels=True)
         components, evidence, _ = model.predict_components(x)
         prediction = components @ np.asarray(spec["weights"])
         raw = components[:, :4] @ np.asarray(spec["weights"])[4:]

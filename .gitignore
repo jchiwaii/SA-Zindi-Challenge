@@ -28,6 +28,8 @@
 /submission*_inference_report.json
 /vessel_noise_submission_bundle.zip
 /vessel_noise_submission_bundle.sha256
+/vessel_noise_v2_bundle.zip
+/vessel_noise_v2_bundle.sha256
 /solution/reports/*.log
 /solution/reports/*.csv.gz
 /solution/reports/execution_status.json
